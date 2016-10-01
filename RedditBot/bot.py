@@ -20,10 +20,6 @@ strings = []
 for submission in subreddit.get_hot(limit=10):
   if "imgur.com/" not in submission.url:
     continue
-  # print "Title: ", submission.title
-  # print "Text: ", submission.selftext
-  # print "Score: ", submission.score
-  # print "__________________________\n"
   strings.append(submission.url)
 
 print ', '.join(strings)
