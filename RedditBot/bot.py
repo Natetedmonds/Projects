@@ -2,25 +2,18 @@ import praw
 import pdb
 import re
 import os
-from config_bot import *
 
-if not os.path.isfile("config_bot.py"):
-  print "You must create a config file for your bot's credentials\n"
-  exit(1)
+user_agent = ("WallpaperPuller Buddy v.1.0.0")    #unique user_agent to keep reddit from banning or screaming
+r = praw.Reddit(user_agent = user_agent)          #call praw to connect to Reddit
 
-user_agent = ("WallpaperPuller Buddy v.1.0.0")
-r = praw.Reddit(user_agent = user_agent)
+subreddit = r.get_subreddit("wallpapers")         #grabs the subreddit to scan
 
-r.login(REDDIT_USERNAME, REDDIT_PASS, disable_warning=True)
+strings = []                                      #initializes our list of images
 
-subreddit = r.get_subreddit("wallpapers")
-
-strings = []
-
-for submission in subreddit.get_hot(limit=10):
+for submission in subreddit.get_hot(limit=10):    #loop for scraping
   if "imgur.com/" not in submission.url:
     continue
   strings.append(submission.url)
 
-print ', '.join(strings)
+print ' \n'.join(strings)                          #outputs the list in a readable manner
   
