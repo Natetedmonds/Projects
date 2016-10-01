@@ -1,0 +1,2 @@
+REDDIT_USERNAME = 'Dio--Sama'
+REDDIT_PASS = 'BotSama'
